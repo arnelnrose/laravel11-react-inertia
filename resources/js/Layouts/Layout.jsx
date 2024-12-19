@@ -88,6 +88,7 @@ function Layout({ children }) {
             name: "Arnel Rose",
             email: "anrose@ideaserv.com.ph",
             image: "/img/profile.png",
+            appTitle: "Login",
         },
     });
 
@@ -99,6 +100,7 @@ function Layout({ children }) {
                         name: "Arnel Rose",
                         email: "anrose@ideaserv.com.ph",
                         image: "/img/profile.png",
+                        appTitle: "Login",
                     },
                 });
             },

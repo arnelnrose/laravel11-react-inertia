@@ -153,3 +153,5 @@ FRONTEND UI
 ============================================
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
+npm install @react-pdf-viewer/core @react-pdf-viewer/default-layout
+npm install -g npm@11.0.0

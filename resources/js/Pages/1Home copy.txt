@@ -8,7 +8,6 @@ import SendIcon from "@mui/icons-material/Send";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
-import ClearIcon from "@mui/icons-material/Clear";
 // import Grid from "@mui/material/Grid2";
 import {
     Button,
@@ -107,7 +106,7 @@ const Home = () => {
                             sx={{
                                 display: "block",
                                 width: "100%",
-                                maxWidth: "650px",
+                                maxWidth: "650",
                                 height: "auto",
                             }}
                         />
@@ -140,8 +139,7 @@ const Home = () => {
                             }}
                             onClick={handleClickOpen}
                         >
-                            <EditNoteIcon sx={{ mr: 1 }} />
-                            CREATE TICKET
+                            <EditNoteIcon /> &nbsp; CREATE TICKET
                         </Button>
 
                         {/* DIALOG WITH TEXT FIELDS*/}
@@ -200,7 +198,7 @@ const Home = () => {
                                         container
                                         spacing={2}
                                     >
-                                        <Grid item xs={12} sm={6} md={6} lg={3}>
+                                        <Grid item xs={12} sm={6} md={3}>
                                             <TextField
                                                 id="name"
                                                 label="FULL NAME"
@@ -210,7 +208,6 @@ const Home = () => {
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
                                             <FormControl fullWidth>
-                                                {" "}
                                                 <InputLabel id="company">
                                                     COMPANY
                                                 </InputLabel>
@@ -252,25 +249,28 @@ const Home = () => {
                                             />
                                         </Grid>
                                     </Grid>
+                                    {/* <Divider sx={{ mb: 1, mt: 0 }} /> */}
 
                                     <Typography
                                         variant="h6"
                                         sx={{
+                                            p: 1,
+                                            mb: 0,
                                             bgcolor: "#e3eefa",
                                             // bgcolor: "#f5f5f5",
-                                            p: 1,
                                             display: "block",
                                             width: "100%",
-                                            fontWeight: 600,
                                             borderRadius: 1,
-                                            marginBottom: "15px",
+                                            fontWeight: 600,
                                         }}
                                     >
                                         ISSUE OR BUG ENCOUNTERED
                                     </Typography>
+                                    {/* <Divider /> */}
 
                                     {/* ROW 2 - DROPDOWNS*/}
                                     <Grid
+                                        mt={1}
                                         sx={{ flexGrow: 1 }}
                                         container
                                         spacing={2}
@@ -332,10 +332,11 @@ const Home = () => {
                                     {/* ROW 3  TEXT AREA FIELD*/}
                                     <Grid
                                         container
-                                        spacing={{ sx: 1, sm: 2, md: 2 }}
+                                        spacing={2}
                                         sx={{ flexGrow: 1 }}
                                     >
-                                        <Grid item xs={12} sm={12} md={8}>
+                                        {/* Text Field - Takes up 10/12 of the width */}
+                                        <Grid item xs={12} sm={12} md={10}>
                                             <Box
                                                 sx={{
                                                     mt: 3,
@@ -351,8 +352,8 @@ const Home = () => {
                                                     variant="outlined"
                                                     multiline
                                                     fullWidth
-                                                    maxRows={20}
-                                                    minRows={17}
+                                                    maxRows={10}
+                                                    minRows={4}
                                                     placeholder="Type your message here..."
                                                     sx={{
                                                         "& .MuiOutlinedInput-root":
@@ -360,12 +361,13 @@ const Home = () => {
                                                                 borderRadius:
                                                                     "4px",
                                                             },
+                                                        paddingRight: "100px", // Space for file preview
                                                         transition:
-                                                            "all 0.3s ease",
+                                                            "all 0.3s ease", // Smooth transition for hover effects
                                                         "&:hover .MuiOutlinedInput-root":
                                                             {
                                                                 borderColor:
-                                                                    "#007BFF",
+                                                                    "#007BFF", // Hover effect on text area border
                                                             },
                                                     }}
                                                 />
@@ -373,8 +375,8 @@ const Home = () => {
                                         </Grid>
 
                                         {/* File Preview - Takes up 2/12 of the width */}
-                                        <Grid item xs={12} sm={12} md={4}>
-                                            {file ? (
+                                        <Grid item xs={12} sm={12} md={2}>
+                                            {file && (
                                                 <a
                                                     href={file}
                                                     target="_blank"
@@ -387,7 +389,9 @@ const Home = () => {
                                                         sx={{
                                                             position:
                                                                 "relative",
+                                                            right: 0,
                                                             mt: 3,
+                                                            bottom: 0,
                                                             width: "100%",
                                                             padding: 1,
                                                             backgroundColor:
@@ -419,7 +423,7 @@ const Home = () => {
                                                             <iframe
                                                                 src={file}
                                                                 width="100px"
-                                                                height="auto"
+                                                                height="100px"
                                                                 title="PDF Preview"
                                                                 style={{
                                                                     border: "none",
@@ -430,76 +434,32 @@ const Home = () => {
                                                                 src={file}
                                                                 alt="Attachment Preview"
                                                                 width="100%"
-                                                                height="auto"
-                                                                style={{
-                                                                    border: "2px solid #ccc",
-                                                                    borderRadius:
-                                                                        "4px",
-                                                                }}
-                                                                onError={(
-                                                                    e,
-                                                                ) => {
-                                                                    e.target.src =
-                                                                        "/img/imgplaceholder.jpg";
-                                                                }}
+                                                                height="110px"
                                                             />
                                                         )}
                                                     </Box>
                                                 </a>
-                                            ) : (
-                                                <Box
-                                                    sx={{
-                                                        position: "relative",
-                                                        mt: 3,
-                                                        width: "100%",
-                                                        padding: 1,
-                                                        backgroundColor:
-                                                            "rgba(255, 255, 255, 0.7)",
-                                                        display: "flex",
-                                                        alignItems: "center",
-                                                        justifyContent:
-                                                            "center",
-                                                        overflow: "hidden",
-                                                        borderRadius: "4px",
-                                                        border: "2px solid #ccc",
-                                                        cursor: "not-allowed",
-                                                        transition:
-                                                            "all 0.3s ease",
-                                                    }}
-                                                >
-                                                    <img
-                                                        src="/img/imgplaceholder.jpg"
-                                                        alt="No Image Available"
-                                                        width="100%"
-                                                        height="auto"
-                                                        style={{
-                                                            border: "2px solid #ccc",
-                                                            borderRadius: "4px",
-                                                        }}
-                                                    />
-                                                </Box>
                                             )}
                                         </Grid>
                                     </Grid>
 
-                                    {/* BUTTONS */}
-                                    <Box mt={2}>
-                                        <Grid
-                                            container
-                                            spacing={{ xs: 2, sm: 2, md: 2 }}
-                                        >
-                                            <Grid
-                                                item
-                                                xs={6}
-                                                sm={6}
-                                                md={4}
-                                                lg={3}
+                                    <Grid sx={{ flexGrow: 1 }}>
+                                        {/* File Attachment Section - Takes up 4/12 of the width */}
+                                        <Grid item>
+                                            <Box
+                                                sx={{
+                                                    mt: 3,
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                }}
                                             >
                                                 <Button
                                                     variant="contained"
                                                     component="label"
                                                     size="large"
-                                                    fullWidth
+                                                    sx={{
+                                                        width: { xs: "200px" },
+                                                    }}
                                                 >
                                                     <AttachFileIcon
                                                         sx={{ mr: 1 }}
@@ -513,34 +473,9 @@ const Home = () => {
                                                         }
                                                     />
                                                 </Button>
-                                            </Grid>
-                                            <Grid
-                                                item
-                                                xs={6}
-                                                sm={6}
-                                                md={4}
-                                                lg={3}
-                                            >
-                                                {file && (
-                                                    <Button
-                                                        variant="contained"
-                                                        component="label"
-                                                        size="large"
-                                                        color="error"
-                                                        fullWidth
-                                                        onClick={() => {
-                                                            setFile(null);
-                                                        }}
-                                                    >
-                                                        <ClearIcon
-                                                            sx={{ mr: 1 }}
-                                                        />
-                                                        Remove Image
-                                                    </Button>
-                                                )}
-                                            </Grid>
+                                            </Box>
                                         </Grid>
-                                    </Box>
+                                    </Grid>
                                 </Box>
                             </DialogContent>
                             <DialogActions>
@@ -549,8 +484,8 @@ const Home = () => {
                                     autoFocus
                                     onClick={handleClose}
                                 >
-                                    Submit
-                                    <SendIcon sx={{ ml: 1 }} />
+                                    Submit &nbsp;
+                                    <SendIcon />
                                 </Button>
                             </DialogActions>
                         </BootstrapDialog>
@@ -562,8 +497,7 @@ const Home = () => {
                                 width: { xs: "250px" },
                             }}
                         >
-                            <ChatIcon sx={{ mr: 1 }} />
-                            CHAT WITH SUPPORT
+                            <ChatIcon /> &nbsp; CHAT WITH SUPPORT
                         </Button>
                     </Stack>
                 </Stack>
